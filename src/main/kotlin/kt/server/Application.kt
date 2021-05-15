@@ -4,11 +4,13 @@
 package kt.server
 
 import io.ktor.application.*
-import io.ktor.http.*
 import io.ktor.features.*
+import io.ktor.http.*
 import io.ktor.response.*
 import io.ktor.routing.*
 import io.ktor.sessions.*
+import io.ktor.server.engine.*
+import io.ktor.server.netty.*
 
 class App {
   val greeting: String?
@@ -18,21 +20,28 @@ class App {
 }
 
 // fun main() {
-//   embeddedServer(Netty, port = 8000) {
-//       routing {
+//   embeddedServer(Netty, port = 8000, watchPaths = listOf("classes","resources")) {
+//         routing {
+//           get("/") {
+//             call.respondText(
+//                 "Hello from Ktor Testable sample application",
+//                 ContentType.Text.Plain,
+//                 HttpStatusCode.OK)
+//           }
 //           health()
+//         }
 //       }
-//   }.start(wait = true)
+//       .start(wait = true)
 // }
 
 fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
-
 fun Application.main(testing: Boolean = false) {
   install(DefaultHeaders)
   install(CallLogging)
   routing {
     get("/") {
-      call.respondText("Hello from Ktor Testable sample application", ContentType.Text.Plain, HttpStatusCode.OK)
+      call.respondText("Hello from Ktor Testable sample application", ContentType.Text.Plain,
+HttpStatusCode.OK)
     }
     health()
   }
