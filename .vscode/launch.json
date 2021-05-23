@@ -10,7 +10,7 @@
       "name": "Kotlin Launch",
       "projectRoot": "${workspaceFolder}",
       "mainClass": "kt/server/ApplicationKt",
-      "vmArguments": "",
+      "logLevel": "ALL",
       "preLaunchTask": "build",
     }
   ]
