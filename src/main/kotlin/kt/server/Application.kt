@@ -19,23 +19,14 @@ class App {
     }
 }
 
-// fun main() {
-//   embeddedServer(Netty, port = 8000, watchPaths = listOf("classes","resources")) {
-//         routing {
-//           get("/") {
-//             call.respondText(
-//                 "Hello from Ktor Testable sample application",
-//                 ContentType.Text.Plain,
-//                 HttpStatusCode.OK)
-//           }
-//           health()
-//         }
-//       }
-//       .start(wait = true)
-// }
+fun main(args: Array<String>) {
+  val server = embeddedServer(Netty, port = 8000, watchPaths = listOf("classes","resources")) {
+    main()
+  }
+  server.start(wait=true)
+}
 
-fun main(args: Array<String>): Unit = io.ktor.server.netty.EngineMain.main(args)
-fun Application.main(testing: Boolean = false) {
+fun Application.main() {
   install(DefaultHeaders)
   install(CallLogging)
   routing {
